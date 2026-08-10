@@ -1,0 +1,749 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabrent â Acquisition Ads Â· GMDS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+  :root{
+    /* GMDS brand palette */
+    --bg:#161719; --bg2:#1b1c1f; --card:#212325; --card2:#282a2d;
+    --line:#34363b; --line2:#43464c;
+    --ink:#f4f5f7; --muted:#adb2bd; --dim:#767b85;
+    --violet:#9d78d6; --cyan:#51a0d8;
+    --voltik:#4f77bb; --blowzer:#6b6cc4; --chillypop:#51a0d8;
+    --tofu:#8b5cc7; --mofu:#4f77bb; --bofu:#51a0d8;
+    --ok:#5fd97a; --warn:#ffcb57; --red:#ff6b6b;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'Montserrat',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(139,92,199,.10),transparent 60%),radial-gradient(900px 500px at -10% 10%,rgba(81,160,216,.07),transparent 55%),var(--bg);color:var(--ink);font-family:var(--font);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  a{color:var(--cyan);text-decoration:none}
+
+  header.hero{padding:56px 0 30px}
+  .brandline{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--violet);font-weight:600}
+  h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:14px 0 8px;font-weight:800;letter-spacing:-.02em}
+  h1 span{background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .thesis{color:var(--muted);font-size:17px;max-width:700px;margin:6px 0 22px}
+  .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;min-width:112px}
+  .stat b{display:block;font-family:var(--mono);font-size:22px;font-weight:700;color:var(--ink)}
+  .stat small{color:var(--dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(12,10,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin-top:26px}
+  nav.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+  nav.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);font-family:var(--font);font-weight:600;font-size:13.5px;padding:8px 15px;border-radius:999px;cursor:pointer;transition:.15s}
+  nav.tabs button:hover{color:var(--ink);border-color:var(--line2)}
+  nav.tabs button.active{background:linear-gradient(90deg,rgba(139,92,199,.9),rgba(81,160,216,.85));color:#161719;border-color:transparent}
+
+  section.panel{display:none;padding:34px 0 20px;animation:fade .25s ease}
+  section.panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2{font-size:26px;font-weight:800;margin:0 0 4px;letter-spacing:-.01em}
+  h3{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--dim);font-weight:600;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  h3::after{content:"";height:1px;flex:1;background:var(--line)}
+  .lead{color:var(--muted);max-width:770px;margin:6px 0 0}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .box h4{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .box p{margin:0;color:var(--muted);font-size:13.5px}
+  .box ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
+  .box li{margin:4px 0}
+  .callout{border:1px solid var(--line2);background:linear-gradient(180deg,rgba(139,92,199,.08),rgba(81,160,216,.04));border-radius:16px;padding:16px 18px;margin:18px 0;color:var(--ink);font-size:14.5px}
+  .callout b{color:var(--violet)}
+  .callout.warn{background:linear-gradient(180deg,rgba(255,203,87,.08),transparent);border-color:rgba(255,203,87,.4)}
+  .callout.warn b{color:var(--warn)}
+
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+  .pill{font-family:var(--mono);font-size:11.5px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);background:var(--card2)}
+  .pill.win{border-color:rgba(95,217,122,.5);color:var(--ok);background:rgba(95,217,122,.08)}
+  .pill.gap{border-color:rgba(255,203,87,.5);color:var(--warn);background:rgba(255,203,87,.08)}
+
+  table.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;overflow:hidden;border-radius:12px;border:1px solid var(--line)}
+  table.tbl th{background:var(--card2);text-align:left;padding:11px 13px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line)}
+  table.tbl td{padding:11px 13px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+  table.tbl tr:last-child td{border-bottom:none}
+  table.tbl td.mut{color:var(--muted)}
+  table.tbl code{font-family:var(--mono);font-size:12px;color:var(--cyan)}
+  .tbl-scroll{overflow-x:auto}
+
+  .prostrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:16px 0 6px}
+  .prostrip div{padding:14px 16px;border-right:1px solid var(--line)}
+  .prostrip div:last-child{border-right:none}
+  .prostrip small{display:block;color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+  .prostrip b{font-family:var(--mono);font-size:15px}
+
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 8px}
+  .filterbar .fl{font-size:12px;color:var(--dim);font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-right:4px}
+  .chip{cursor:pointer;font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);background:var(--card);transition:.15s}
+  .chip:hover{color:var(--ink)}
+  .chip.on{color:#161719}
+  .chip.on[data-f="ALL"]{background:var(--ink);border-color:var(--ink)}
+  .chip.on[data-f="TOFU"]{background:var(--tofu);border-color:var(--tofu)}
+  .chip.on[data-f="MOFU"]{background:var(--mofu);border-color:var(--mofu)}
+  .chip.on[data-f="BOFU"]{background:var(--bofu);border-color:var(--bofu)}
+
+  .stage-h{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin:26px 0 12px;display:flex;align-items:center;gap:10px}
+  .stage-h .dot{width:9px;height:9px;border-radius:50%}
+  .stage-h[data-s="TOFU"] .dot{background:var(--tofu)} .stage-h[data-s="TOFU"]{color:var(--tofu)}
+  .stage-h[data-s="MOFU"] .dot{background:var(--mofu)} .stage-h[data-s="MOFU"]{color:var(--mofu)}
+  .stage-h[data-s="BOFU"] .dot{background:var(--bofu)} .stage-h[data-s="BOFU"]{color:var(--bofu)}
+  .stage-h span.role{color:var(--dim);font-weight:500;letter-spacing:.06em}
+
+  details.script{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;transition:.15s}
+  details.script[open]{border-color:var(--line2);background:var(--card2)}
+  details.script summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  details.script summary::-webkit-details-marker{display:none}
+  .code{font-family:var(--mono);font-weight:700;font-size:12.5px;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--muted)}
+  .stitle{font-weight:700;font-size:15px;flex:1;min-width:170px}
+  .badge{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px;text-transform:uppercase}
+  .badge.TOFU{background:rgba(139,92,199,.14);color:var(--tofu);border:1px solid rgba(139,92,199,.4)}
+  .badge.MOFU{background:rgba(79,119,187,.14);color:var(--mofu);border:1px solid rgba(79,119,187,.4)}
+  .badge.BOFU{background:rgba(81,160,216,.14);color:var(--bofu);border:1px solid rgba(81,160,216,.4)}
+  .badge.new{background:rgba(95,217,122,.12);color:var(--ok);border:1px solid rgba(95,217,122,.4)}
+  .badge.reuse{background:rgba(255,203,87,.12);color:var(--warn);border:1px solid rgba(255,203,87,.4)}
+  .badge.win{background:rgba(95,217,122,.14);color:var(--ok);border:1px solid rgba(95,217,122,.5)}
+  .chev{color:var(--dim);font-size:13px;transition:.2s}
+  details[open] .chev{transform:rotate(180deg)}
+
+  .sbody{padding:2px 18px 18px;border-top:1px solid var(--line)}
+  .gmeta{font-family:var(--mono);font-size:12px;color:var(--dim);margin:14px 0 4px;letter-spacing:.02em}
+  .gmeta b{color:var(--muted)}
+  .glabel{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--violet);font-weight:700;margin:16px 0 5px}
+  .glabel.alt{color:var(--cyan)}
+  .hook{background:rgba(139,92,199,.07);border-left:3px solid var(--violet);border-radius:8px;padding:11px 14px;margin:4px 0}
+  .hook .os{display:block;font-family:var(--mono);font-size:11.5px;color:var(--cyan);margin-top:6px}
+  ol.beats{margin:4px 0;padding-left:20px}
+  ol.beats li{margin:7px 0;color:var(--ink)}
+  ol.beats li span{color:var(--dim);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-right:6px}
+  ul.variants{margin:4px 0;padding-left:18px}
+  ul.variants li{margin:8px 0;color:var(--ink)}
+  ul.variants li i{color:var(--cyan);font-family:var(--mono);font-size:11px;font-style:normal;display:block;margin-top:2px}
+  .cta{background:rgba(81,160,216,.07);border-left:3px solid var(--cyan);border-radius:8px;padding:11px 14px;margin:4px 0;font-weight:500}
+  .adcopy{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;padding:11px 14px;margin:4px 0;font-size:13.5px}
+  .adcopy b{color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .copybtn{margin-top:16px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--line2);border-radius:8px;padding:7px 13px;cursor:pointer;transition:.15s}
+  .copybtn:hover{color:var(--ink);border-color:var(--cyan)}
+  .copybtn.done{color:var(--ok);border-color:var(--ok)}
+
+  footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 0 60px;color:var(--dim);font-size:12.5px}
+  .hide{display:none!important}
+  @media(max-width:600px){.prostrip div{border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+
+<header class="hero"><div class="wrap">
+  <div class="brandline">GMDS Â· Media Ã Digital Solutions</div>
+  <h1>Sabrent â <span>Video Content Plan</span></h1>
+  <p class="thesis">Full-funnel video system for the three hero products, built on what the account already proves: <b style="color:#f4f5f7">demo video is the winning format</b> â the ChillyPop demo drove 100% of purchases. Sell the problem solved, not the spec sheet.</p>
+  <div class="stats">
+    <div class="stat"><b>3</b><small>Hero products</small></div>
+    <div class="stat"><b>19</b><small>Video concepts</small></div>
+    <div class="stat"><b>3</b><small>Funnel stages</small></div>
+    <div class="stat"><b>2Ã</b><small>Hook variants each</small></div>
+    <div class="stat"><b>US</b><small>Market Â· English</small></div>
+  </div>
+</div></header>
+
+<nav class="tabs"><div class="wrap">
+  <button class="active" data-tab="overview">Overview</button>
+  <button data-tab="strategy">Strategy</button>
+  <button data-tab="voltik">â¡ Voltik</button>
+  <button data-tab="blowzer">ð¨ Blowzer</button>
+  <button data-tab="chillypop">ð§ ChillyPop</button>
+  <button data-tab="measurement">Measurement</button>
+  <button data-tab="roadmap">Roadmap</button>
+</div></nav>
+
+<!-- ================= OVERVIEW ================= -->
+<section class="panel active" id="overview"><div class="wrap">
+  <h2>How this plan works</h2>
+  <p class="lead">A hybrid plan: strategy + measurement + production, wrapped around 19 shoot-ready video scripts organized by funnel stage. Each concept ships with a hook (0-3s), on-screen text, beats, CTA, 2 alternate hooks for horizontal scaling, and ad copy. Language: US English.</p>
+
+  <div class="callout">
+    <b>The one insight that drives everything:</b> across the whole account, static ads convert at ~0 and <b style="color:#a5d97a">video demos win</b>. The ChillyPop demo alone drove 100% of purchases (CPA $36.54, â44.5%). Voltik has 26 statics and <b style="color:#ffcb57">zero sales videos</b> â the single biggest untapped lever in the account.
+  </div>
+
+  <h3>The funnel â 3 stages, 3 roles</h3>
+  <div class="grid">
+    <div class="box"><h4><span class="badge TOFU">TOFU</span> Test</h4><p>Stop the scroll on a cold audience. Test new angles fast.</p><ul><li>Problem hook</li><li>Curiosity hook</li><li>UGC review</li></ul></div>
+    <div class="box"><h4><span class="badge MOFU">MOFU</span> Feed</h4><p>Show it works. Educate the considering buyer.</p><ul><li>Use demo</li><li>Comparison vs alternative</li><li>Objection-buster</li></ul></div>
+    <div class="box"><h4><span class="badge BOFU">BOFU</span> Close</h4><p>Convert warm traffic and retargeting.</p><ul><li>Social proof (4.7â / 10k)</li><li>Risk reversal</li><li>Offer / bundle</li></ul></div>
+  </div>
+
+  <h3>How to read a script</h3>
+  <div class="grid">
+    <div class="box"><h4>ð¬ Hook + variants</h4><p>The 0-3s opener with on-screen text, plus 2 alternate hooks. Same body, new hook = a cheap horizontal test (NAD scaling model).</p></div>
+    <div class="box"><h4>ðï¸ Beats</h4><p>Scene-by-scene shot direction, ready to hand a creator or shoot in-house.</p></div>
+    <div class="box"><h4>âï¸ Ad copy</h4><p>Primary text + headline so the video ships as a complete ad, not just a clip.</p></div>
+  </div>
+
+  <div class="callout warn">
+    <b>Legend:</b> All prices and specs are confirmed from the live Sabrent PDPs and the running video ads. Every script keeps its hook in the first 3 seconds â non-negotiable. Burn in captions; assume no sound.
+  </div>
+</div></section>
+
+<!-- ================= STRATEGY ================= -->
+<section class="panel" id="strategy"><div class="wrap">
+  <h2>Strategy</h2>
+  <p class="lead">Positioning, the angle logic behind every script, and how the concepts map onto the Meta account structure. This is the "why" a client wants to see before approving spend.</p>
+
+  <h3>Positioning</h3>
+  <div class="callout">
+    Sabrent is a <b>premium electronics brand</b> (4.7â, 10,000+ reviews) fighting on two fronts: <b style="color:#f4f5f7">Anker</b> above (certainty, full-funnel, expensive) and <b style="color:#f4f5f7">Ugreen</b> below (cheap challenger, perpetual promos). The thesis: <b>the best product doesn't win by default â you have to communicate better.</b> That means selling the problem solved (not specs), leaning on massive social proof, and moving buyers off Amazon-only into an owned funnel that builds data + LTV.
+  </div>
+
+  <h3>Angle Ã Avatar Ã Pain matrix</h3>
+  <div class="tbl-scroll"><table class="tbl">
+    <tr><th>Product</th><th>Avatar</th><th>Core pain</th><th>Winning angles</th><th>Proof to lean on</th></tr>
+    <tr><td><b>â¡ Voltik</b></td><td class="mut">WFH / desk setup, multi-device household</td><td class="mut">Charger clutter, not enough ports, slow charging</td><td class="mut">Charger graveyard Â· Flying Blind Â· One hub every device Â· vs $130 Anker</td><td class="mut">252W Â· 8 ports Â· $11/port Â· UL Â· 4.7â/10k</td></tr>
+    <tr><td><b>ð¨ Blowzer X6</b></td><td class="mut">Multi-use: car detailers, PC/tech owners, home cleaners</td><td class="mut">Canned air runs out, costs forever, wasteful</td><td class="mut">Live winners: Stop Cleaning Â· Canned Air Â· Real Detailers Â· Someone Asked Â· New ground: satisfying Â· listicle Â· precision Â· social proof Â· gifting</td><td class="mut">3 power levels Â· 5 attachments Â· USB-C Â· code MYBLOWZER 20% off</td></tr>
+    <tr><td><b>ð§ ChillyPop</b></td><td class="mut">Commuters, outdoor, gym-goers, travelers, parents</td><td class="mut">Sweltering heat, no AC on the go, sweaty commute</td><td class="mut">2PM heat slump Â· hands-free hanger Â· pocket-AC test Â· unboxing Â· always packed</td><td class="mut">3 speeds Â· up to 8h battery Â· hands-free Â· demo = 100% of sales Â· 18% CTR unboxing</td></tr>
+  </table></div>
+
+  <h3>Blowzer â mini brief <span style="color:var(--warn);font-family:var(--font);text-transform:none;letter-spacing:0">(not in the documented strategy â briefed here)</span></h3>
+  <div class="grid">
+    <div class="box"><h4>Positioning</h4><p>The rechargeable tool that ends the canned-air cycle. One buy replaces an endless stream of $8 disposable cans â and cleans your car, your setup and your home.</p></div>
+    <div class="box"><h4>Competitor to displace</h4><p>Not another gadget â <b style="color:#f4f5f7">canned/compressed air</b>. That's the "old way" every ad reframes: wasteful, runs out, freezes when tilted.</p></div>
+    <div class="box"><h4>Confirmed for launch</h4><p>$55.99 (reg. $69.99) Â· up to 100-min runtime Â· 130,000 RPM brushless Â· 3 modes Â· 5 attachments Â· USB-C Â· code MYBLOWZER = 20% off.</p></div>
+  </div>
+</div></section>
+
+<!-- ================= VOLTIK ================= -->
+<section class="panel" id="voltik"><div class="wrap">
+  <h2>â¡ Voltik <span style="font-size:14px;color:var(--dim);font-weight:500">Â· 252W 8-Port USB-C Hub &amp; Charger</span></h2>
+  <div class="prostrip">
+    <div><small>Price</small><b>$89.99</b><span style="color:var(--dim);text-decoration:line-through;font-size:12px"> $149.99</span></div>
+    <div><small>Avatar</small><b style="font-size:13px">WFH / desk, multi-device</b></div>
+    <div><small>Core pain</small><b style="font-size:13px">Charger clutter, few ports</b></div>
+    <div><small>Proof</small><b>4.7â Â· 10k+</b></div>
+  </div>
+  <div class="pills">
+    <span class="pill gap">GAP: 0 sales videos live</span>
+    <span class="pill">Angle used: You're Flying Blind</span>
+    <span class="pill">5-in-1</span>
+    <span class="pill">Universal compatibility</span>
+  </div>
+  <p class="lead" style="margin-top:14px">Voltik's PDP videos have <b style="color:#ffcb57">never run as sales ads</b>. Selling angle: replace 8 chargers, 252W, $11/port, UL-certified â more ports than Anker at half the price.</p>
+
+  <div class="filterbar" data-scope="voltik">
+    <span class="fl">Filter</span><span class="chip on" data-f="ALL">All 6</span><span class="chip" data-f="TOFU">TOFU</span><span class="chip" data-f="MOFU">MOFU</span><span class="chip" data-f="BOFU">BOFU</span>
+  </div>
+
+  <div class="stage-h" data-s="TOFU"><span class="dot"></span>TOFU Â· Test <span class="role">â stop the scroll</span></div>
+
+  <details class="script" data-stage="TOFU">
+    <summary><span class="code">VK-T1</span><span class="stitle">"The Charger Graveyard"</span><span class="badge TOFU">TOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Problem hook Â· <b>Format:</b> 9:16 UGC Â· <b>~18-22s</b> Â· <b>Creator:</b> remote worker, messy desk</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Dumps a drawer of tangled chargers on the desk. "How many of these do you actually need?"><span class="os">On-screen: "The charger graveyard ð¢</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"I found 9 chargers in one drawer. I need exactly one."<i>On-screen: "Be honest, how many do you own?"</i></li>
+        <li>"Your nightstand doesn't need 6 bricks."<i>On-screen: "There's a better way â"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Agitate</span>"Every device, a different brick. Outlets full, desk a mess."</li>
+        <li><span>Reveal</span>Sweeps them away, drops in one Voltik. "One hub. Eight ports. 252 watts."</li>
+        <li><span>Payoff</span>Laptop, phone, tablet, watch, earbuds â all on Voltik, all charging.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Clear your desk for good â link in bio. $89.99, was $149.99."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Still juggling a drawer full of chargers? One Voltik hub replaces all 8 â 252W, fast-charges every device at once. 4.7â from 10,000+ reviews.<br><br><b>Headline:</b> One Hub. Eight Ports. Zero Clutter.</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="TOFU">
+    <summary><span class="code">VK-T2</span><span class="stitle">"You're Flying Blind"</span><span class="badge TOFU">TOFU</span><span class="badge reuse">Reuse angle â video</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Curiosity / control Â· <b>Format:</b> 9:16 UGC Â· <b>~15-20s</b> Â· <b>Creator:</b> tech / setup enthusiast</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">"If you're charging off a random power strip, you're flying blind."<span class="os">On-screen: "Your charging setup is a fire hazard ð¥"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"That $5 power strip is throttling every device you own."<i>On-screen: "Slow charging has a reason"</i></li>
+        <li>"Do you actually know how much power your charger pushes? Exactly."<i>On-screen: "Flying blind âï¸"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Problem</span>Cheap strips: no fast charge, no protection, no idea what each device pulls.</li>
+        <li><span>Shift</span>"Voltik gives every port smart 252W PD â and it's UL-certified."</li>
+        <li><span>Demo</span>Close-up of ports lighting up, fast-charge % climbing on a phone.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Charge smart, not blind â, tap to shop Voltik."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> A random power strip can't fast-charge or protect your gear. Voltik delivers smart 252W across 8 UL-certified ports. Stop flying blind.<br><br><b>Headline:</b> Smart 252W Charging â UL Certified</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <div class="stage-h" data-s="MOFU"><span class="dot"></span>MOFU Â· Feed <span class="role">â show it works</span></div>
+
+  <details class="script" data-stage="MOFU">
+    <summary><span class="code">VK-D1</span><span class="stitle">"One Hub, Every Device"</span><span class="badge MOFU">MOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Use demo Â· <b>Format:</b> 9:16 clean demo Â· <b>~25-30s</b> Â· <b>Creator:</b> in-house / hands-only</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">One hand plugs a laptop, phone AND tablet into Voltik at once. "Watch all three fast-charge â from one hub."><span class="os">On-screen: "252W. 8 ports. Zero compromise."</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"This one hub runs my entire desk off a single outlet."<i>On-screen: "8 devices, 1 plug"</i></li>
+        <li>"Can one charger really power everything? Let's test it."<i>On-screen: "The 8-device test"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Setup</span>Voltik on a clean desk, one wall plug. "This replaces every brick you own."</li>
+        <li><span>Demo</span>Plug in device after device â 8 total â each showing a charging icon. No slowdown.</li>
+        <li><span>Detail</span>Flip it: "USB-C, USB-A, PD fast-charge. Mac, PC, Android, iPhone."</li>
+        <li><span>Value</span>"$89.99 across 8 ports â about eleven bucks a port."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"One hub does it all â shop Voltik, link below."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Laptop, phone, tablet, watch, earbuds â all fast-charging from one 252W hub. 8 ports, one outlet, ~$11 a port. Works with everything.<br><br><b>Headline:</b> Power 8 Devices From One Hub</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="MOFU">
+    <summary><span class="code">VK-C1</span><span class="stitle">"Voltik vs. the $130 Charger"</span><span class="badge MOFU">MOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Comparison / objection Â· <b>Format:</b> 9:16 split-screen Â· <b>~22-26s</b> Â· <b>Creator:</b> reviewer tone</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Holds two hubs. "This one's $130. This one does more â for less."<span class="os">On-screen: "Same power. Twice the ports. Half the price."</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"Before you buy the $130 name brand, watch this."<i>On-screen: "Save $40. Get more."</i></li>
+        <li>"They charge you extra for the logo. Voltik doesn't."<i>On-screen: "More ports, less money"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Compare</span>Side-by-side spec cards: ports, wattage, price. Voltik wins on ports + price.</li>
+        <li><span>Objection</span>"'Cheaper means worse'? Voltik is UL-certified with 10,000+ reviews at 4.7 stars."</li>
+        <li><span>Proof</span>Quick pan of review screenshots.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Stop overpaying for fewer ports â get Voltik."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Same 252W power. More ports. ~$40 less than the big name brand â and UL-certified with 10,000+ 4.7â reviews. Why pay for the logo?<br><br><b>Headline:</b> More Ports. Less Money. Same Power.</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <div class="stage-h" data-s="BOFU"><span class="dot"></span>BOFU Â· Close <span class="role">â convert</span></div>
+
+  <details class="script" data-stage="BOFU">
+    <summary><span class="code">VK-B1</span><span class="stitle">"10,000 Reviews Can't Be Wrong"</span><span class="badge BOFU">BOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Social proof Â· <b>Format:</b> 9:16 review montage Â· <b>~15-18s</b> Â· <b>Creator:</b> UGC voiceover</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">"10,000 people gave this 4.7 stars. Here's why."><span class="os">On-screen: "â­ 4.7 Â· 10,000+ reviews"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"I read the reviews so you don't have to. Verdict: buy it."<i>On-screen: "10,000 can't be wrong"</i></li>
+        <li>"WhjÐ do 10,000 buyers know that you don't?"<i>On-screen: "4.7â average"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Proof</span>Fast montage of 5-star quotes ("finally ditched my power strip").</li>
+        <li><span>Trust</span>"UL-certified. Built by Sabrent â 4.7 stars across the board."</li>
+        <li><span>Demo</span>Quick hero shot of Voltik charging a full desk.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Join 10,000+ â shop Voltik, $89.99 today."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> 10,000+ reviews. 4.7 stars. UL-certified. Voltik replaces every charger on your desk with one 252W, 8-port hub. See why buyers keep switching.<br><br><b>Headline:</b> Trusted by 10,000+ Buyers</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="BOFU">
+    <summary><span class="code">VK-B2</span><span class="stitle">"Clear Your Desk Today"</span><span class="badge BOFU">BOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Offer / risk reversal Â· <b>Format:</b> 9:16 offer Â· <b>~12-15s</b> Â· <b>Creator:</b> UGC / retargeting</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Before: cluttered desk. After: one Voltik. "Same desk. One cable."><span class="os">On-screen: "$149.99 â $89.99"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"Still thinking about it? It's 40% off right now."<i>On-screen: "$89.99 â today"</i></li>
+        <li>"This is the cleanest your desk will ever look."<i>On-screen: "One hub. Done."</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Offer</span>"Right now it's $89.99 â that's 40% off."</li>
+        <li><span>Reversal</span>"UL-certified, backed by 10k reviews. Try it risk-free."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Tap the link before the price goes back up."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:Ø
+	HÙÙ^NHLË\ÜX]ÛX\È[Ý\\ÚÈÜÛÛÙSXÙ\YYY
+ø¦!HÛHL
+Ë\ÚËYYH8 %\ÈÜX[Ý\ËXY[NØ	MKNH8¡¤	KNH
+Ù^HÛJOÙ]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[ÏÙ]ÜÙXÝ[ÛKKHOOOOOOOOOOOOOOOOHÕÖTOOOOOOOOOOOOOOOOHKOÙXÝ[ÛÛ\ÜÏH[[YHÝÞ\]Û\ÜÏHÜ\¼'äªÝÞ\
+Ü[Ý[OHÛ\Ú^NMØÛÛÜ\KY[JNÙÛ]ÙZYÚL°­ÈÛÜ\ÜÈZ\\Ý\ÜÜ[Ú]Û\ÜÏHÜÝ\]ÛX[XÙOÜÛX[
+MKNOØÜ[Ý[OHÛÛÜ\KY[JNÝ^YXÛÜ][Û[K]ÝYÚÙÛ\Ú^NL	
+KNOÜÜ[Ù]]ÛX[]]\ÜÛX[Ý[OHÛ\Ú^NLÜ][K]\ÙN]]È0­ÈXÚ0­ÈÛYOØÙ]]ÛX[Ù\ÜÛX[Ý[OHÛ\Ú^NLÜÛÙHVPÕÖT0­È	HÙØÙ]]ÛX[ÜXÜÏÜÛX[Ý[OHÛ\Ú^NLÜÈ][È0­È
+H]XÚ0­ÈTÐPÏØÙ]Ù]]Û\ÜÏH[ÈÜ[Û\ÜÏH[Ú[Ú[[ÈÜX]ÙXÝ[[ÏÜÜ[Ü[Û\ÜÏH[ÈÝÙ\][ÏÜÜ[Ü[Û\ÜÏH[H]XÚY[ÏÜÜ[Ü[Û\ÜÏH[TÐPÈXÚ\ÙXXOÜÜ[Ù]Û\ÜÏHXYÝ[OHX\Ú[]ÜMÝ[OHÛÛÜÙYÈ\Ú[Û\ÏØ]ØØ[HHÚ[[ÈHÙH]HY[ÜÈ
+ÜYÝÛÙXÝY[[ÈÜX]X[ÜXÜËVPÕÖTÙ\H8 %Ý[OHÛÛÜÙYÈÚ]Ý]ÛÜZ[È[OØ[XYH[[ÎÝÜÛX[[ËØ[YZ\X[]Z[\ËÛÛY[ÛH\ÚÙY\ÙHÜ[]ÈÜÝ[Ø]\ÙZ[Ë\ÝXÛK[^XÝY\Ù\ËXÚ\Ú[ÛÛØÚX[ÛÙÚY[ËÜ]Û\ÜÏH[\\]K\ØÛÜOHÝÞ\Ü[Û\ÜÏH[\ÜÜ[Ü[Û\ÜÏHÚ\Û]KYHS[
+ÜÜ[Ü[Û\ÜÏHÚ\]KYHÑHÑOÜÜ[Ü[Û\ÜÏHÚ\]KYHSÑHSÑOÜÜ[Ü[Û\ÜÏHÚ\]KYHÑHÑOÜÜ[Ù]]Û\ÜÏHÝYÙKZ]K\ÏHÑHÜ[Û\ÜÏHÝÜÜ[ÑH0­È\ÝÜ[Û\ÜÏHÛH¸ %ÝÜHØÜÛÜÜ[Ù]]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSOÜÜ[Ü[Û\ÜÏHÝ]HH[ÜÝØ]\ÙZ[ÈÛX[ÛH[\]ÜÜ[Ü[Û\ÜÏHYÙHÑHÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È[ÛOÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Û\ÜÏHØÙH]Û\ÜÏHÛY]H[ÛNØØ]\ÙZ[ÈÈTÓT0­ÈÜX]ØÜYÝÛ\Û
+ÈÛÝË[[È
+ÈÈ0­ÈMKLÏØ0­ÈÝ[NØÙXÝ[YÈXÙOÙ]]Û\ÜÏHÛX[ÛÚÈ
+LÜÊOÙ]]Û\ÜÏHÛÚÈ^[YHÛÝË[[È8 %HØ[Ù\Ý^Ù\ÈÙHXÚÈÙ^XØ\[ÛH\ÝÜ[Û\ÜÏHÜÈÛ\ØÜY[\HÛÝ[Û<'ã©ÈÜÜ[Ù]]Û\ÜÏHÛX[[ÛÚÈ\X[È
+Ø[YHÙJOÙ][Û\ÜÏH\X[ÈO\È\ÈH[ÜÝØ]\ÙZ[È[ÈIÝHÛX[Y[YX\OÛ\ØÜY[ØZ]Ü]8 )ÚOÛOO[ÛÈÙ\ÝÛÛH[ÛH\ÝOÛ\ØÜY[ÛÈØ]\ÙZ[ÈÚOÛOÝ[]Û\ÜÏHÛX[X]ÏÙ]ÛÛ\ÜÏHX]ÈOÜ[\ÝÜÜ[ÛÝË[[È\ÝÙHÙ^XØ\[HÈ[[Ø\[È8 %XXÚHÛX[ÚÛÜÚÛOOÜ[]X[ÜÜ[ÝÞ\
+YYÛH]ÈØ\ÙKÛÜ\ÜËÈÝÙ\][Ë
+H]XÚY[ËÛOOÜ[ÛÜÜÜ[[ÛÛH[ÜHØ]\ÙZ[È\ÝÈÛH\^KÛOÛÛ]Û\ÜÏHÛX[ÕOÙ]]Û\ÜÏHÝHÙ]HÝÞ\
+8 %ÛÙHVPÕÖTÜ	HÙÙ]]Û\ÜÏHÛX[YÛÜOÙ]]Û\ÜÏHYÛÜH[X\NØH[ÜÝÙHØ]\ÙZ[ÈÛX[Û[Ý\YYHÝÞ\
+\ÝÈ[ÛÈÙ\ÝÙÙ^XØ\Ë[È[[È[ÛHÚÝ8 %ÛÜ\ÜËÈÝÙ\][Ë
+H]XÚY[ËXY[NØ[ÝIÛØ]Ú\ÈÚXÙOÙ]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[Ï]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSÜÜ[Ü[Û\ÜÏHÝ]H[ÝIÜHÛX[[È\ÙHÈ[ÜÈÜÛÈÜÜ[Ü[Û\ÜÏHYÙHÑHÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È[ÛOÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Û\ÜÏHØÙH]Û\ÜÏHÛY]H[ÛNØ\ÝXÛHÈYXØ][Û0­ÈÜX]ØÜYÝÛ\Û
+È[Ý[ÛÜ\XÜÈ
+ÈÈ0­ÈLÏØÙ]]Û\ÜÏHÛX[ÛÚÈ
+LÜÊOÙ]]Û\ÜÏHÛÚÈÈ[ÜÈ[[Ý\Ý\ÙH[ÝIÜHÛX[[ÈÛÛ\][HÜÛËÜ[Û\ÜÏHÜÈÛ\ØÜY[ÌHÚ[YÈ[ÝHÜÜ[Ù]]Û\ÜÏHÛX[[ÛÚÈ\X[È
+Ø[YHÙJOÙ][Û\ÜÏH\X[ÈOÝÜ\Ú[ÈHÛÝÛ\ÙHÈ[ÜËOÛ\ØÜY[[ÝIÜHÜXY[È\ÝÚOÛOOÈ[ÜÈHÚ\HXZÙ\È\Y\ÝÛX[\OÛ\ØÜY[\IÜÈH^ÚOÛOÝ[]Û\ÜÏHÛX[X]ÏÙ]ÛÛ\ÜÏHX]ÈOÜ[ÌHÙ^XØ\ÜÜ[HÚ\H\Ú\ÈÜ[XÈY\\H\ÝYÈ[HÝ]8 %]ZXÚÈ[[ËÛOOÜ[ÌØ[Y\H[ÏÜÜ[HÛÝX]\ÈZXÜË\ØÜ]Ú\ËHÛÙX\Ú]XÚY[Ù\ÛÝ8 %[[ËÛOOÜ[ÌÈØ\[ÏÜÜ[[ÝHØ[ÝXXÚ[K
+H]XÚY[ÈØ[8 %[[ËÛOOÜ[ÛÜÙOÜÜ[ÛHÝÞ\
+]\HØ\ÛOÛÛ]Û\ÜÏHÛX[ÕOÙ]]Û\ÜÏHÝH^[È8 %ÛÙHVPÕÖQT	HÙÙ]]Û\ÜÏHÛX[YÛÜOÙ]]Û\ÜÏHYÛÜH[X\NØ[ÝIÜHÛX[[È[Ý\Ù^XØ\Ø[Y\H[Ø\[ÈÜÛÈ8 %HÛÝÜXYÈ\Ý]Ù\ÛÝ[[ÝH]HÝÞ\
+ÜÈ
+H]XÚY[ÈY]Ý]Ù]\HØ\XY[NØÈ[ÜÈ[ÝIÜHÛX[[ÈÜÛÏÙ]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[Ï]Û\ÜÏHÝYÙKZ]K\ÏHSÑHÜ[Û\ÜÏHÝÜÜ[SÑH0­ÈYYÜ[Û\ÜÏHÛH¸ %ÚÝÈ]ÛÜÜÏÜÜ[Ù]]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHSÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSÏÜÜ[Ü[Û\ÜÏHÝ]HXÙ\È[ÝHYÝÛÝÈ[ÝHÛÝ[ÛX[ÜÜ[Ü[Û\ÜÏHYÙHSÑHSÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È[ÛOÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Û\ÜÏHØÙH]Û\ÜÏHÛY]H[ÛNØ[^XÝY]\ÙH[[È0­ÈÜX]ØÜYÝÛ
+ÈY\Ý[H\Û
+ÈÈ0­ÈKLÌÏØÙ]]Û\ÜÏHÛX[ÛÚÈ
+LÜÊOÙ]]Û\ÜÏHÛÚÈÝÜÈÝ][Z\ÙÈØ\ÙH8 %\ÝY\Ë][ÝIÝH]\ÛX[Y\ËÜ[Û\ÜÏHÜÈÛ\ØÜY[LÜÝÈ[ÝIÜHÜÙ][ÈÜÜ[Ù]]Û\ÜÏHÛX[[ÛÚÈ\X[È
+Ø[YHÙJOÙ][Û\ÜÏH\X[ÈOXÙ\È[ÝHYÝÛÝÈYYYÛX[[È[[ÝËOÛ\ØÜY[ÍÈ\ÈÜÜÜÈÚOÛOOHÝ[\Ý[ÜÝÈHYÝÛÝÈ^\ÝYOÛ\ØÜY[Ø]Ú]\HÛHÚOÛOÝ[]Û\ÜÏHÛX[X]ÏÙ]ÛÛ\ÜÏHX]ÈOÜ[[ÛYÙOÜÜ[\YY\NZ\ÙÈØ\ÙK\Ü[Ù\ËÙ^XØ\ÝÛ\ÙX[\Ë[ËØ\Ý\Û\ËØ[Y\HYËÛOOÜ[[ÙOÜÜ[ÈÝÙ\][È8 %Ù[HÜ[XØ]KX^ÜÝXÚË[Û\ÝÛOOÜ[ÛÜÙOÜÜ[H]XÚY[ÈXXÚ]\HÛKTÐPË[Ø^\ÈXYKÛOÛÛ]Û\ÜÏHÛX[ÕOÙ]]Û\ÜÏHÝHÛHÛÛ]\]Ú\H8 %ÛÙHVPÕÖTÜ	HÙÙ]]Û\ÜÏHÛX[YÛÜOÙ]]Û\ÜÏHYÛÜH[X\NØZ\ÙÈØ\ÙK\Ü[Ù\Ë[ËØ\ÙX[\ËØ[Y\HYÈ8 %\ÝY\È]\]Ú\KHÝÞ\
+XXÚ\È[Ù]Ú]
+H]XÚY[È[ÈÝÙ\][ËXY[NØÛX[HÜÝÈ[ÝH[Ø^\ÈÜÙ]Ù]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[Ï]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHSÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSÜÜ[Ü[Û\ÜÏHÝ]H]	ÜÈÝ\ÝHÝÙ\ÜÜ[Ü[Û\ÜÏHYÙHSÑHSÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È0­ÈQÐÈÜX]\ÝÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Û\ÜÏHØÙH]Û\ÜÏHÛY]H[ÛNØXÚ\Ú[ÛÈ]XÚY[È0­ÈÜX]ØQÐÈÜX]Ü
+[Ú[ÈXY
+H8 %]ÈÜX]ÈHÙXÝY[[ÈX\H0­ÈLÏØ0­È\Ù[\ØÝÙÜ\\ÈØZ\ÝÙ]]Û\ÜÏHÛX[ÛÚÈ
+LÜÊOÙ]]Û\ÜÏHÛÚÈÜX]ÜÈØ[Y\KÛ[ÈH\Ú]XÚY[]\[ÛH[ÜÈ\È\È\ÝHÝÙ\]	ÜÈÝÜ[Û\ÜÏHÜÈÛ\ØÜY[]\Ú\ÈÛÈÜÜ[Ù]]Û\ÜÏHÛX[[ÛÚÈ\X[È
+Ø[YHÙJOÙ][Û\ÜÏH\X[ÈOH]XÚY[ØÙH[ÜÈXÝ]Ú[ÙYÝÈHÛX[^HÙX\OÛ\ØÜY[\Ú
+È\ÝÚOÛOOY[ÝHÝÛHØ[Y\K[ÝHYYÈÙYH\È]XÚY[OÛ\ØÜY[Ü[XØ]HÝYÚOÛOÝ[]Û\ÜÏHÛX[X]ÏÙ]ÛÛ\ÜÏHX]ÈOÜ[ÚÝÏÜÜ[ÛXÚÜÈÛHÛÙX\Ú]XÚY[\ÚÛÜÙ[È]Z\YÈ]8 %]HØ[YH[YKÛOOÜ[[[ÏÜÜ[Ø[Y\H[Ë]ÙY[YXÚ[XØ[Ù^\ËHØ]ÚX\YËÛOOÜ[[ÙOÜÜ[ÈÝÙ\][È8 %HÛÈÙ[HÛÛ\ÜËÝÛÈÛÜ[YKÛOOÜ[\ÝÜÜ[H]XÚY[ËTÐPË]\È[^HYËÛOÛÛ]Û\ÜÏHÛX[ÕOÙ]]Û\ÜÏHÝH\È\ÈHÛH8 %ÛÙHVPÕÖTÜ	HÙÙ]]Û\ÜÏHÛX[YÛÜOÙ]]Û\ÜÏHYÛÜH[X\NØ]	ÜÈÝ\ÝHÝÙ\HÛÙX\Ú]XÚY[ÛÜÙ[È\ÝÚ[HHZ\YÈ]8 %ØYHÜØ[Y\H[Ù\ËØ]Ú\È[YXÚ[XØ[Ù^\Ë
+H]XÚY[ËÈÝÙ\][ËXY[NØÝÈS\Ú8 %Ü[XØ]HÙX\Ù]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[Ï]Û\ÜÏHÝYÙKZ]K\ÏHÑHÜ[Û\ÜÏHÝÜÜ[ÑH0­ÈÛÜÙHÜ[Û\ÜÏHÛH¸ %ÛÛ\ÜÜ[Ù]]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSOÜÜ[Ü[Û\ÜÏHÝ]HLÛX[XZÜÈXYHHÝÚ]ÚÜÜ[Ü[Û\ÜÏHYÙHÑHÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È[ÛOÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Û\ÜÏHØÙH]Û\ÜÏHÛY]H[ÛNØÛØÚX[ÛÙ0­ÈÜX]ØQÐÈ]Y]È[ÛYÙH
+ÈÈ0­ÈMKLNÏØ0­È\Ù[\ØÚXÙ[Ý\
+ÈX[Û\ÏÙ]]Û\ÜÏHÛX[ÛÚÈ
+LÜÊOÙ]]Û\ÜÏHÛÚÈÝ\Ø[ÈÙ[ÜH\XÙYZ\Ø[YZ\Ú]\ËÜ[Û\ÜÏHÜÈÛ\ØÜY[¸«d8«d8«d8«d8«d	ÝÚ\ÚHÝYÚ]ÛÛÛ\ÈÜÜ[Ù]]Û\ÜÏHÛX[[ÛÚÈ\X[È
+Ø[YHÙJOÙ][Û\ÜÏH\X[ÈOH]Y]ÜÈÛ\È[È\H[X[OÛ\ØÜY[ÙYHÜ[Ý\Ù[ÚOÛOOÚH\È]\[ÛIÜÈ\ÚÈÝY[H\ÈÛX[ÈOÛ\ØÜY[\È\ÈÚHÚOÛOÝ[]Û\ÜÏHÛX[X]ÏÙ]ÛÛ\ÜÏHX]ÈOÜ[[ÛYÙOÜÜ[X[Û\ÈÙ[ÜH\Ý[ÈÙ^XØ\ËØ\È[Ø[Y\\È
+È
+K\Ý\][Ý\È\Ú[ËÛOOÜ[Y[YOÜÜ[ÛÜ\ÜËÈÝÙ\][Ë
+H]XÚY[È8 %È[ÜHØ[ËÛOOÜ[ÛÜÙOÜÜ[\ÈÚÝÙHÝÞ\
+[]ÈØ\ÙKÛOÛÛ]Û\ÜÏHÛX[ÕOÙ]]Û\ÜÏHÝHÚ[[H8 %ÛÙHVPÕÖT	HÙÙ]]Û\ÜÏHÛX[YÛÜOÙ]]Û\ÜÏHYÛÜH[X\NØÝ\Ø[È]ÚYØ[YZ\ÜHÝÞ\
+8 %[ÛÛÝÛÈXÚËÛÜ\ÜËÈÝÙ\][Ë
+H]XÚY[ËÛH^KÙYHÚKXY[NØL
+ÈXYHHÝÚ]ÚÙ]]ÛÛ\ÜÏHÛÜX¸©âHÛÜHØÜ\Ø]ÛÙ]Ù]Z[Ï]Z[ÈÛ\ÜÏHØÜ\]K\ÝYÙOHÑHÝ[[X\OÜ[Û\ÜÏHÛÙHSÜÜ[Ü[Û\ÜÏHÝ]HHÚY]XZÙ\È[HØ^H	ÕÚ\H\È\ÈY[ÉÈÜÜ[Ü[Û\ÜÏHYÙHÑHÑOÜÜ[Ü[Û\ÜÏHYÙH]È]È[ÛOÜÜ[Ü[Û\ÜÏHÚ]¸¥¯ÜÜ[ÜÝ[[X\O]Ø±ÍÌôÍ½äø(ñ¥Ø±ÍÌôµÑøñù¹±èð½ø¥Ð¼½Í¥½¸
+Üñù½ÉµÐèð½øÑ½Àµ½Ý¸Õ¹½á¥¹¬Y<
+ÜñùøÄÔ´ÈÁÌð½ø
+ÜñùAÉÍ¹ÑÈèð½ø¥Ðµ¥ÙÈA=Xð½¥Øø(ñ¥Ø±ÍÌô±°ù!½½¬ À´ÍÌ¤ð½¥Øø(ñ¥Ø±ÍÌô¡½½¬ù!¹Ì	±½ÝéÈ`ØÑ¼µÈ¼Á¡½Ñ½ÉÁ¡ÈìÑ¡ä½Á¸¥Ð°åÌ±¥¡ÐÕÀ¸Q¡¥ÐÑ¡ä±°ÑÕ±±äÕÍ¸øñÍÁ¸±ÍÌô½Ìù=¸µÍÉ¸è½ÈÑ¡ÁÉÍ½¸Ý¡¼¡ÌÙÉåÑ¡¥¹ð½ÍÁ¸øð½¥Øø(ñ¥Ø±ÍÌô±°±Ðù!½½¬ÙÉ¥¹ÑÌ¡Íµ½ä¤ð½¥Øø(ñÕ°±ÍÌôÙÉ¥¹ÑÌø(ñ±¤øMÑÕ¬½¸¥Ð½ÈÑ¡Ñ ÁÉÍ½¸üM½±Ù¸ñ¤ù=¸µÍÉ¸èÑ¡ä±°±½ÙÑ¡¥Ìð½¤øð½±¤ø(ñ±¤øQ¡¥ÐÑ¡ÐÑÌÝ¡É¡ÌÑ¡¥Ì¸üñ¤ù=¸µÍÉ¸èÙÉäÍ¥¹±Ñ¥µð½¤øð½±¤ø(ð½Õ°ø(ñ¥Ø±ÍÌô±°ù	ÑÌð½¥Øø(ñ½°±ÍÌôÑÌø(ñ±¤øñÍÁ¸ùIÙ°ð½ÍÁ¸ù=Á¹ÌÑ¡ÍP	±½ÝéÈ`Ø¬ÔÑÑ¡µ¹ÑÌ°¹Ñ±äÁ­¸1½½­ÌÁÉµ¥Õ´°±ÌÁÉµ¥Õ´¸ð½±¤ø(ñ±¤øñÍÁ¸ùUÍð½ÍÁ¸ùEÕ¥¬±ÍÐ½¸­å½É¼µÉ¼È¸]½É­Ì½¸±¥ÑÉ±±äÙÉåÑ¡¥¹¸ð½±¤ø(ñ±¤øñÍÁ¸ù
+±½Íð½ÍÁ¸ø
+½É±ÍÌ°UMµ°Éä½ÕÐ½Ñ¡½à¸ð½±¤ø(ð½½°ø(ñ¥Ø±ÍÌô±°ù
+Qð½¥Øø(ñ¥Ø±ÍÌôÑø¥Ð¥Ð¡½È­À¥Ð¤P½5e	1=]iH½ÈÈÀ½¸ð½¥Øø(ñ¥Ø±ÍÌô±°ù½Áäð½¥Øø(ñ¥Ø±ÍÌô½ÁäøñùAÉ¥µÉäèð½øQ¡¥Ð½ÈÑ¡ÁÉÍ½¸Ý¡¼¡ÌÙÉåÑ¡¥¹èÑ¡	±½ÝéÈ`Ø¸½É±ÍÌ¥ÈÕÍÑÈÝ¥Ñ ÔÑÑ¡µ¹ÑÌÑ¡Ð±¹ÌÑ¡¥ÈÍ¬°µÉ¹È¸Q¡ä±°ÍäÝ¡É¡ÌÑ¡¥Ì¸üñÈøñÈøñù!±¥¹èð½øQ¡¥ÐQ¡ä±°ÑÕ±±äUÍð½¥Øø(ñÕÑÑ½¸±ÍÌô½ÁåÑ¸û$
+½ÁäÍÉ¥ÁÐð½ÕÑÑ½¸ø(ð½¥Øø(ð½Ñ¥±Ìø(ð½¥Øøð½ÍÑ¥½¸ø((ð´´ôôôôôôôôôôôôôôôôô
+!%11eA=@ôôôôôôôôôôôôôôôôô´´ø(ñÍÑ¥½¸±ÍÌôÁ¹°¥ô¡¥±±åÁ½Àøñ¥Ø±ÍÌôÝÉÀø(ñ ÈûÂ~(
+¡¥±±åA½ÀñÍÁ¸ÍÑå±ô½¹ÐµÍ¥éèÄÑÁàí½±½ÈéÙÈ ´µ¥´¤í½¹ÐµÝ¥¡ÐèÔÀÀû
+Ü5¥¹¤A½ÉÑ±¸Ý¥Ñ !¹Èð½ÍÁ¸øð½ Èø(ñ¥Ø±ÍÌôÁÉ½ÍÑÉ¥Àø(ñ¥ØøñÍµ±°ùAÉ¥ð½Íµ±°øñøä¸ääð½øñÍÁ¸ÍÑå±ô½±½ÈéÙÈ ´µ¥´¤íÑáÐµ½ÉÑ¥½¸é±¥¹µÑ¡É½Õ í½¹ÐµÍ¥éèÄÉÁàøÄÐ¸ääð½ÍÁ¸øð½¥Øø(ñ¥ØøñÍµ±°ùÙÑÈð½Íµ±°øñÍÑå±ô½¹ÐµÍ¥éèÄÍÁàù
+½µµÕÑÉÌ°½ÕÑ½½È°å´°ÑÉÙ°ð½øð½¥Øø(ñ¥ØøñÍµ±°ù
+½ÉÁ¥¸ð½Íµ±°øñÍÑå±ô½¹ÐµÍ¥éèÄÍÁàùMÝ±ÑÉ¥¹¡Ð°¹¼½¸Ñ¡¼ð½øð½¥Øø(ñ¥ØøñÍµ±°ù]¥¹¹Èð½Íµ±°øñÍÑå±ô½±½ÈéÙÈ ´µ½¬¤ùµ¼ôÄÀÀ½Í±Ìð½øð½¥Øø(ð½¥Øø(ñ¥Ø±ÍÌôÁ¥±±Ìø(ñÍÁ¸±ÍÌôÁ¥±°Ý¥¸ùµ¼
+AÌØ¸ÔÐ
+Ü
+QHÌ¸ÌÈð½ÍÁ¸ø(ñÍÁ¸±ÍÌôÁ¥±°Ý¥¸ùU¹½á¥¹¡¥ÐÄà
+QHð½ÍÁ¸ø(ñÍÁ¸±ÍÌôÁ¥±°øÌÍÁÌ
+Üá ÑÑÉäð½ÍÁ¸øñÍÁ¸±ÍÌôÁ¥±°ù!¹ÌµÉ¡¹Èð½ÍÁ¸ø(ð½¥Øø(ñÀ±ÍÌô±ÍÑå±ôµÉ¥¸µÑ½ÀèÄÑÁàùÁ½­ÐµÍ¥éÁÉÍ½¹°¸èÌÍÁÌ°ÕÀÑ¼à¡½ÕÉÌÁÈ¡É°UMµ°¹µÑ°¡¹È½ÈñÍÑå±ô½±½ÈèÑÕÜù¡¹ÌµÉ½½±¥¹ð½ø½¸å½ÕÈ¹¬°½ÈÍÑÉ½±±È¸]¥¹¹¥¹½ÉµÐ¥ÌÑ¡µ¼P±¸¥¹Ñ¼¥ÐÁ±ÕÌÑ¡Õ¹½á¥¹¹±Ñ¡Ð±Éä¡¥ÐÄà
+QH¸ð½Àø((ñ¥Ø±ÍÌô¥±ÑÉÈÑµÍ½Áô¡¥±±åÁ½Àø(ñÍÁ¸±ÍÌô°ù¥±ÑÈð½ÍÁ¸øñÍÁ¸±ÍÌô¡¥À½¸Ñµô10ù±°Üð½ÍÁ¸øñÍÁ¸±ÍÌô¡¥ÀÑµôQ=TùQ=Tð½ÍÁ¸øñÍÁ¸±ÍÌô¡¥ÀÑµô5=Tù5=Tð½ÍÁ¸øñÍÁ¸±ÍÌô¡¥ÀÑµô	=Tù	=Tð½ÍÁ¸ø(ð½¥Øø((ñ¥Ø±ÍÌôÍÑµ ÑµÌôQ=TøñÍÁ¸±ÍÌô½Ðøð½ÍÁ¸ùQ=T
+ÜQÍÐñÍÁ¸±ÍÌôÉ½±ûPÍÑ½ÀÑ¡ÍÉ½±°ð½ÍÁ¸øð½¥Øø((ñÑ¥±Ì±ÍÌôÍÉ¥ÁÐÑµÍÑôQ=Tø(ñÍÕµµÉäøñÍÁ¸±ÍÌô½ù
+@µPÄð½ÍÁ¸øñÍÁ¸±ÍÌôÍÑ¥Ñ±øQ¡ÉA4!ÐM±ÕµÀð½ÍÁ¸øñÍÁ¸±ÍÌôQ=TùQ=Tð½ÍÁ¸øñÍÁ¸±ÍÌôÉÕÍùIÉÍ èÉÁ´MÑÉÕ±ð½ÍÁ¸øñÍÁ¸±ÍÌô¡ØûZøð½ÍÁ¸øð½ÍÕµµÉäø(ñ¥Ø±ÍÌôÍ½äø(ñ¥Ø±ÍÌôµÑøñù¹±èð½øAÉ½±´¡½½¬
+Üñù½ÉµÐèð½øäèÄØU
+ÜñùøÄÔ´ÈÁÌð½ø
+Üñù
+ÉÑ½Èèð½ø½¥Ý½É­È¼½µµÕÑÈð½¥Øø(ñ¥Ø±ÍÌô±°ù!½½¬ À´ÍÌ¤ð½¥Øø(ñ¥Ø±ÍÌô¡½½¬ù¹¹¥¹Ñ¡µÍ±ÙÌÝ¥Ñ ¹½Ñ½½¬Ð¡½ÐÍ¬°Ù¥Í¥±äÍÝÑ¥¹¸%ÐÌÉA4¹Ñ¡¥Ì½¥¡Ì¹¼¸ñÍÁ¸±ÍÌô½Ìù=¸µÍÉ¸èA=Xè¹¼
+¡¥±±åA½ÀÂ~Ôð½ÍÁ¸øð½¥Øø(ñ¥Ø±ÍÌô±°±Ðù!½½¬ÙÉ¥¹ÑÌ¡Íµ½ä¤ð½¥Øø(ñÕ°±ÍÌôÙÉ¥¹ÑÌø(ñ±¤øAÕ±¥ÑÉ¹ÍÁ½ÉÐ¥¸ÍÕµµÈ¥ÌÁÉÍ½¹°ÑÑ¬¸ñ¤ù=¸µÍÉ¸èQ¡ÉA4¡Ð¥ÌÉ°ð½¤øð½±¤ø(ñ±¤ø]¡ä¥Ì¥Ð±ÝåÌÌÀÉÌÐµäÍ¬üñ¤ù=¸µÍÉ¸èM½Õ¹µ¥±¥Èüð½¤øð½±¤ø(ð½Õ°ø(ñ¥Ø±ÍÌô±°ù	ÑÌð½¥Øø(ñ½°±ÍÌôÑÌø(ñ±¤øñÍÁ¸ù¥ÑÑð½ÍÁ¸øMÝÑä°ÍÑÕä°¸Ð½ÕÌP¹¹¼¥¸Í¥¡Ð¸ð½±¤ø(ñ±¤øñÍÁ¸ùM¡¥Ðð½ÍÁ¸ùAÕ±±Ì½ÕÐ
+¡¥±±åA½À°±¥­Ì¥Ð½¸°½½°¥È°¥¹ÍÑ¹ÐÉ±¥¸=È¸¸¸Ñ¡¥Ì¸ð½±¤ø(ð½½°ø(ñ¥Ø±ÍÌô±°ù
+Qð½¥Øø(ñ¥Ø±ÍÌôÑø	ÐÑ¡¡Ð¹åÝ¡ÉPä¸ää°±¥¹¬¥¸¥¼¸ð½¥Øø(ñ¥Ø±ÍÌô±°ù½Áäð½¥Øø(ñ¥Ø±ÍÌô½ÁäøñùAÉ¥µÉäèð½ø9¼Ðå½ÕÈÍ¬°½¸Ñ¡ÕÌ°¥¸Ñ¡¡Ðü
+¡¥±±åA½À¥ÌÁ½­ÐµÍ¥é¸Ý¥Ñ ÌÍÁÌ¹ÕÀÑ¼à¡½ÕÉÌ½½½°P¡¹ÌµÉÝ¥Ñ Ñ¡¡¹È¸)ÕÍÐä¸ää¸ñÈøñÈøñù!±¥¹èð½øe½ÕÈAÉÍ½¹°P¹åÝ¡Éð½¥Øø(ñÕÑÑ½¸±ÍÌô½ÁåÑ¸û$
+½ÁäÍÉ¥ÁÐð½ÕÑÑ½¸ø(ð½¥Øø(ð½Ñ¥±Ìø((ñÑ¥±Ì±ÍÌôÍÉ¥ÁÐÑµÍÑôQ=Tø(ñÍÕµµÉäøñÍÁ¸±ÍÌô½ù
+@µPÈð½ÍÁ¸øñÍÁ¸±ÍÌôÍÑ¥Ñ±øQ¡¸Q¡Ð!¹Ì=e½ÕÈ9¬ð½ÍÁ¸øñÍÁ¸±ÍÌôQ=TùQ=Tð½ÍÁ¸øñÍÁ¸±ÍÌô¹Üù9Üð½ÍÁ¸øñÍÁ¸±ÍÌô¡ØûZøð½ÍÁ¸øð½ÍÕµµÉäø(ñ¥Ø±ÍÌôÍ½äø(ñ¥Ø±ÍÌôµÑøñù¹±èð½ø
+ÕÉ¥½Í¥Ñä¼ÁÉ½ÕÐÉÙ°
+Üñù½ÉµÐèð½øäèÄØU
+ÜñùøÄÕÌð½ø
+Üñù
+ÉÑ½Èèð½ø½ÕÑ½½È¼½µµÕÑÈð½¥Øø(ñ¥Ø±ÍÌô±°ù!½½¬ À´ÍÌ¤ð½¥Øø(ñ¥Ø±ÍÌô¡½½¬ù1½½ÁÌÑ¡¸Ì¡¹ÈÉ½Õ¹Ñ¡¥È¹¬°¡¹ÌµÉ°½½°¥È½¸Ñ¡¥È¸]¥ÐPÑ¡¥Ì¸¥Ì¡¹ÌµÉüñÍÁ¸±ÍÌô½Ìù=¸µÍÉ¸è¡¹ÌµÉ½½±¥¹Â~2 ð½ÍÁ¸øð½¥Øø(ñ¥Ø±ÍÌô±°±Ðù!½½¬ÙÉ¥¹ÑÌ¡Íµ½ä¤ð½¥Øø(ñÕ°±ÍÌôÙÉ¥¹ÑÌø(ñ±¤ø$ÍÑ½ÁÁ¡½±¥¹¸¸9½Ü¥Ð¡½±Ì¥ÑÍ±¸ñ¤ù=¸µÍÉ¸èÑ¡¡¹È¡¹ÌÙÉåÑ¡¥¹ð½¤øð½±¤ø(ñ±¤øQ¡Ñ¥¹ä¸Ñ¡Ð½ÌÙÉåÝ¡Éwith me."<i>On-screen: "fits in my bag"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Show</span>Metal hanger loops on a neck / bag / stroller. "Hang it and forget it."</li>
+        <li><span>Demo</span>3 speeds, quiet, cool air while both hands stay free.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Grab one â $9.99, tap the link."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> A mini fan that hangs off your neck, stroller or bag â hands-free cooling with 3 speeds and up to 8 hours per charge. Fits anywhere. $9.99.<br><br><b>Headline:</b> Hands-Free Cooling You Can Wear</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <div class="stage-h" data-s="MOFU"><span class="dot"></span>MOFU Â· Feed <span class="role">â show it works</span></div>
+
+  <details class="script" data-stage="MOFU">
+    <summary><span class="code">CP-D1</span><span class="stitle">"8 Hours of Cool in Your Pocket"</span><span class="badge MOFU">MOFU</span><span class="badge win">Proven winner format</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Demo Â· <b>Format:</b> 9:16 UGC Â· <b>~22s</b> Â· <b>Creator:</b> everyday user</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Pulls the fan from a small bag on a packed hot train, clicks it on, instant relief. "This tiny thing saved my commute."<span class="os">On-screen: "The pocket AC test ð"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"One charge lasted my entire festival day. Watch."<i>On-screen: "8 hours laterâ¦"</i></li>
+        <li>"Cool at 8AM, still cool at 5PM. Here's how."<i>On-screen: "all-day cool"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Problem</span>"Handheld fans die in an hour or feel like nothing."</li>
+        <li><span>Demo</span>3 speed levels â soft breeze to strong gust; hang it hands-free.</li>
+        <li><span>Proof</span>"Up to 8 hours per charge, USB-C. Quiet enough for the office."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Stay cool all day â $9.99 with the link."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> A pocket fan that actually lasts: 3 speeds, up to 8 hours per charge, and a hanger for hands-free cooling. Quiet enough for the office, strong enough for the heat. $9.99.<br><br><b>Headline:</b> All-Day Cool, Pocket-Size</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="MOFU">
+    <summary><span class="code">CP-U1</span><span class="stitle">"ChillyPop Unboxing"</span><span class="badge MOFU">MOFU</span><span class="badge win">Proven: 18% CTR</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Unboxing / desire Â· <b>Format:</b> 9:16 UGC Â· <b>~20-25s</b> Â· <b>Creator:</b> lifestyle / aesthetic</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Hands opening the package. "My ChillyPop came â let's see if this tiny fan actually works."<span class="os">On-screen: "Unboxing the viral mini fan"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"The little fan that's all over my feed."<i>On-screen: "Worth it? Let's see"</i></li>
+        <li>"It's smaller than my phone and cools like AC."<i>On-screen: "Wait for it"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Reveal</span>Pulls it out â size, color, the metal hanger. "Way smaller than I expected."</li>
+        <li><span>Demo</span>Clicks through 3 speeds, feels the airflow.</li>
+        <li><span>Hands-free</span>Hangs it on the neck / desk. "Now my hands are free and I'm cool."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Grab yours â $9.99, link below."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Unboxing the mini fan that's all over your feed. Smaller than your phone, 3 speeds, up to 8 hours, and a hanger for hands-free cooling. Only $9.99. See why it's viral.<br><br><b>Headline:</b> The Viral Mini Fan â Unboxed</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="MOFU">
+    <summary><span class="code">CP-D2</span><span class="stitle">"Always Packed, Always Cool"</span><span class="badge MOFU">MOFU</span><span class="badge reuse">Refresh: Always Packed</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="geta"><b>Angle:</b> Lifestyle demo Â· <b>Format:</b> 9:16 day-in-the-life Â· <b>~25s</b> Â· <b>Creator:</b> busy parent / traveler</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Drops ChillyPop into a tote on the way out. "This goes everywhere with me now."<span class="os">On-screen: "always packed, always cool ð"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"The one thing I never leave home without in summer."<i>On-screen: "my summer essential"</i></li>
+        <li>"A day in the heat with one tiny fan."<i>On-screen: "follow along"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Routine</span>Bag â commute â office â park with the kids â gym.</li>
+        <li><span>Hands-free</span>Hangs on a stroller, gym bag, or neck along the way.</li>
+        <li><span>Payoff</span>Cool all day, one charge, barely takes up space.</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Never sweat it â grab a ChillyPop, $9.99."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Commute, office, park, gym â ChillyPop goes everywhere. Pocket-size, 3 speeds, up to 8 hours, and a hanger so your hands stay free. $9.99.<br><br><b>Headline:</b> Your Everyday Summer Essential</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <div class="stage-h" data-s="BOFU"><span class="dot"></span>BOFU Â· Close <span class="role">â convert</span></div>
+
+  <details class="script" data-stage="BOFU">
+    <summary><span class="code">CP-B1</span><span class="stitle">"Thousands Beat the Heat With This"</span><span class="badge BOFU">BOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="gmeta"><b>Angle:</b> Social proof Â· <b>Format:</b> 9:16 UGC montage Â· <b>~15s</b> Â· <b>Creator:</b> voiceover + clips</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">"Thousands of people are surviving this summer with one tiny fan."<span class="os">On-screen: "â­â­â­â­â­ 'never leaving home without it'"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"The reviews on this little fan are unreal."<i>On-screen: "see for yourself"</i></li>
+        <li>"Everyone at the office has one now. Here's why."<i>On-screen: "it's contagious"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Proof</span>Montage of people using it â commute, stroller, gym, desk + 5-star quotes.</li>
+        <li><span>Reframe</span>"3 speeds, 8 hours, hands-free â for the price of a coffee."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Beat the heat too â $9.99, link below."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Thousands beat the heat with ChillyPop and won't go back. 3 speeds, up to 8 hours, hands-free hanger â cheaper than a coffee. Join them for $9.99.<br><br><b>Headline:</b> Thousands Stay Cool â Here's Why</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+
+  <details class="script" data-stage="BOFU">
+    <summary><span class="code">CP-B2</span><span class="stitle">"Stay Cool for $9.99"</span><span class="badge BOFU">BOFU</span><span class="badge new">New</span><span class="chev">â¾</span></summary>
+    <div class="sbody">
+      <div class="geta"><b>Angle:</b> Offer Â· <b>Format:</b> 9:16 offer Â· <b>~12s</b> Â· <b>Creator:</b> UGC / retargeting</div>
+      <div class="glabel">Hook (0-3s)</div>
+      <div class="hook">Holds it up. "A personal fan that lasts 8 hours for under ten bucks?"<span class="os">On-screen: "$9.99 (reg $14.99)"</span></div>
+      <div class="glabel alt">Hook variants (same body)</div>
+      <ul class="variants">
+        <li>"Still in your cart? The heat's not waiting."<i>On-screen: "$9.99 today"</i></li>
+        <li>"The easiest $9.99 of the summer."<i>On-screen: "get yours"</i></li>
+      </ul>
+      <div class="glabel">Beats</div>
+      <ol class="beats">
+        <li><span>Offer</span>"3 speeds, 8-hour battery, hands-free hanger â $9.99, down from $14.99."</li>
+        <li><span>Nudge</span>"Every hot day you wait is a day you're sweating."</li>
+      </ol>
+      <div class="glabel">CTA</div>
+      <div class="cta">"Tap the link and stay cool all summer."</div>
+      <div class="glabel">Ad copy</div>
+      <div class="adcopy"><b>Primary:</b> Stay cool anywhere for $9.99 (reg $14.99): a pocket fan with 3 speeds, up to 8 hours and a hands-free hanger. Don't sweat another commute.<br><br><b>Headline:</b> Beat the Heat â $9.99</div>
+      <button class="copybtn">â§ Copy script</button>
+    </div>
+  </details>
+</div></section>
+
+<!-- ================= MEASUREMENT ================= -->
+<section class="panel" id="measurement"><div class="wrap">
+  <h2>Measurement</h2>
+  <p class="lead">What each stage is judged on, when to kill or scale, per-product targets, and the naming convention that makes the data readable. This is the layer that turns the plan into something you operate.</p>
+
+  <h3>KPIs by funnel stage</h3>
+  <div class="tbl-scroll"><table class="tbl">
+    <tr><th>Stage</th><th>Primary metric</th><th>Threshold</th><th>Secondary</th><th>What it tells you</th></tr>
+    <tr><td><span class="badge TOFU">TOFU</span></td><td><b>Hook rate (3s)</b></td><td class="mut">â¥ 25%</td><td class="mut">CTR â¥ 1.5% Â· CPC â¤ $0.45â0.80</td><td class="mut">Is the hook stopping the scroll?</td></tr>
+    <tr><td><span class="badge MOFU">MOFU</span></td><td><b>Hold rate (75%)</b></td><td class="mut">â¥ 15%</td><td class="mut">ATC â¥ 8% Â· ThruPlay cost</td><td class="mut">Does the demo hold + create intent?</td></tr>
+    <tr><td><span class="badge BOFU">BOFU</span></td><td><b>CVR</b></td><td class="mut">1.5â2%</td><td class="mut">ROAS â¥ 2.5x Â· CPA â¤ 35% AOV</td><td class="mut">Is it converting warm traffic?</td></tr>
+  </table></div>
+
+  <h3>Kill / scale rule</h3>
+  <div class="grid">
+    <div class="box" style="border-color:rgba(255,107,107,.35)"><h4 style="color:var(--red)">ðª Kill</h4><ul><li>Hook rate < 20% after spending ~1Ã target CPA â kill the creative.</li><li>CTR < 1% with healthy spend â kill.</li><li>3Ã target CPA spent with 0 purchases â kill (3Ã rule).</li></ul></div>
+    <div class="box" style="border-color:rgba(95,217,122,.35)"><h4 style="color:var(--ok)">ð Scale</h4><ul><li>ROAS above target 3 days straight â +20% budget/day.</li><li>Winner hook â spin 2 hook variants (same body) into Creative Testing.</li><li>Winning static angle â shoot the video version.</li></ul></div>
+    <div class="box"><h4>ð Iterate</h4><ul><li>Good hold, weak CTA â swap the CTA / offer.</li><li>Good hook, weak hold â re-cut the demo, tighten beats.</li><li>One variable at a time â never two.</li></ul></div>
+  </div>
+
+  <h3>Per-product targets</h3>
+  <div class="tbl-scroll"><table class="tbl">
+    <tr><th>Product</th><th>Baseline</th><th>Target this cycle</th><th>Leading signal</th></tr>
+    <tr><td><b>ð§ ChillyPop</b></td><td class="mut">Demo CPA $36.54 Â· CTR 3.32%</td><td class="mut">Hold CPA â¤ $35, push CTR > 3.5% with new hooks</td><td class="mut">Hook rate on the 4 new hooks</td></tr>
+    <tr><td><b>â¡ Voltik</b></td><td class="mut">0 sales videos Â· CTR 1.9% (static)</td><td class="mut">First video purchases; CTR â¥ 2%, ROAS â¥ 2x</td><td class="mut">ATC on VK-D1 demo</td></tr>
+    <tr><td><b>ð¨ Blowzer</b></td><td class="mut">4 videos, no reported CPA</td><td class="mut">Establish CPA baseline; find the winning hook</td><td class="mut">Hook rate across 6 angles</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ================= ROADMAP ================= -->
+<section class="panel" id="roadmap"><div class="wrap">
+  <h2>Production Roadmap</h2>
+  <p class="lead">Not all 19 are equal. This is the shoot order â proven winners and high-impact gaps first â plus specs and a generic shot list so a creator can execute without a call.</p>
+
+  <h3>Sprint 1 Â· Week 1â2 â the money shots</h3>
+  <p class="lead" style="margin-bottom:6px">Shoot the proven formats and the biggest gaps first. 8 concepts.</p>
+  <div class="tbl-scroll"><table class="tbl">
+    <tr><th>#</th><th>Concept</th><th>Why first</th></tr>
+    <tr><td class="mut"><code>CP-D1</code></td><td><b>ChillyPop Â· The 2PM Test</b></td><td class="mut">Proven winner format (100% of sales). Re-shoot fresh + new hooks.</td></tr>
+    <tr><td class="mut"><code>CP-U1</code></td><td><b>ChillyPop Â· Unboxing</b></td><td class="mut">Unboxing already hit 18% CTR â recover a proven angle.</td></tr>
+    <tr><td class="mut"><code>VK-D1</code></td><td><b>Voltik Â· One Hub, Every Device</b></td><td class="mut">Closes the #1 account gap: Voltik has zero sales videos.</td></tr>
+    <tr><td class="mut"><code>VK-B1</code></td><td><b>Voltik Â· 10,000 Reviews</b></td><td class="mut">Turns existing proof (4.7â/10k) into a BOFU closer.</td></tr>
+    <tr><td class="mut"><code>BZ-N1</code></td><td><b>Blowzer Â· Most Satisfying Clean</b></td><td class="mut">New scroll-stopper; can be cut from existing B-roll â fast, cheap to produce.</td></tr>
+    <tr><td class="mut"><code>BZ-N5</code></td><td><b>Blowzer Â· 10,000 Made the Switch</b></td><td class="mut">Social-proof closer â turns existing reviews into a BOFU asset.</td></tr>
+    <tr><td class="mut"><code>CP-T1</code></td><td><b>ChillyPop Â· 2PM Meltdown</b></td><td class="mut">Cheap problem hook to feed cold testing.</td></tr>
+    <tr><td class="mut"><code>VK-T1</code></td><td><b>Voltik Â· Charger Graveyard</b></td><td class="mut">Strong scroll-stopper for a cold audience.</td></tr>
+  </table></div>
+
+  <h3>Sprint 2 Â· Week 3â4 â depth + variants</h3>
+  <div class="callout">Shoot the remaining 11 concepts <b>plus 2 hook variants for every Sprint-1 winner</b> that beat threshold. By end of Sprint 2 you have a full library across all 3 stages and enough variants to keep Creative Testing fed.</div>
+
+  <h3>Technical specs</h3>
+  <div class="grid">
+    <div class="box"><h4>ð Format</h4><ul><li>9:16 vertical, 1080Ã1920</li><li>Also export 1:1 (1080Ã1080) for feed</li><li>Keep key action in the center-safe zone</li></ul></div>
+    <div class="box"><h4>â±ï¸ Length</h4><ul><li>TOFU 15â20s Â· MOFU 22â30s Â· BOFU 12â15s</li><li>Hook lands in the first 3s, always</li></ul></div>
+    <div class="box"><h4>ð Sound &amp; text</h4><ul><li>Burn in captions â assume sound off</li><li>On-screen text top third, clear of UI</li><li>Native, phone-shot feel (UGC), not polished ad</li></ul></div>
+  </div>
+
+  <h3>Generic shot list by type</h3>
+  <div class="tbl-scroll"><table class="tbl">
+    <tr><th>Type</th><th>Must-have shots</th><th>Props / setup</th></tr>
+    <tr><td><b>Demo</b></td><td class="mut">Hook reaction Â· product in action Â· close-up of result Â· value line</td><td class="mut">Clean surface, good light, the product + what it cleans/charges/cools</td></tr>
+    <tr><td><b>Split-screen</b></td><td class="mut">Old way (slow/failing) vs product (fast/working), same framing</td><td class="mut">Two identical setups; a timer helps sell the contrast</td></tr>
+    <tr><td><b>UGC / talking head</b></td><td class="mut">Face-to-cam hook Â· b-roll of use Â· reviews flash Â· CTA</td><td class="mut">Creator, natural setting, handheld</td></tr>
+    <tr><td><b>Review montage</b></td><td class="mut">Voiceover hook Â· fast cuts of 5â quotes Â· hero product shot</td><td class="mut">Screenshots of real reviews, product beauty shot</td></tr>
+  </table></div>
+
+  <h3>Pre-publish checklist</h3>
+  <div class="box">
+    <ul style="columns:2;column-gap:28px">
+      <li>Hook in first 3s â</li>
+      <li>Captions burned in â</li>
+      <li>On-screen text in safe zone â</li>
+      <li>Prices &amp; specs match the PDP â</li>
+      <li>CTA + link matches the offer â</li>
+      <li>Named per convention â</li>
+      <li>9:16 + 1:1 exported â</li>
+      <li>Landing page matches the ad â</li>
+    </ul>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <b style="color:var(--muted)">GMDS Â· Sabrent Video Content Plan</b> â v2 Â· 19 concepts Â· US / English Â· full-funnel + measurement + roadmap.<br>
+  Built on the account's proven demo-video win. All prices and specs confirmed from the live Sabrent PDPs and running video ads.
+</div></footer>
+
+<script>
+  const tabs=document.querySelectorAll('nav.tabs button');
+  const panels=document.querySelectorAll('section.panel');
+  tabs.forEach(b=>b.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+
+  document.querySelectorAll('.filterbar').forEach(bar=>{
+    const scope=document.getElementById(bar.dataset.scope);
+    bar.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+        chip.classList.add('on');
+        const f=chip.dataset.f;
+        scope.querySelectorAll('details.script').forEach(d=>{
+          d.classList.toggle('hide',!(f==='ALL'||d.dataset.stage===f));
+        });
+        scope.querySelectorAll('.stage-h').forEach(h=>{
+          h.classList.toggle('hide',!(f==='ALL'||f===h.dataset.s));
+        });
+      });
+    });
+  });
+
+  document.querySelectorAll('.copybtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const body=btn.closest('.sbody');
+      const code=body.parentElement.querySelector('.code').textContent;
+      const title=body.parentElement.querySelector('.stitle').textContent;
+      let out=code+' â '+title+'\n\n';
+      body.querySelectorAll('.glabel').forEach(l=>{
+        const n=l.nextElementSibling; if(!n) return;
+        out+=l.textContent.toUpperCase()+'\n';
+        if(n.tagName==='OL'||n.tagName==='UL'){
+          n.querySelectorAll('li').forEach((li,i)=>{out+=(n.tagName==='OL'?(i+1)+'. ':'â¢ ')+li.textContent.trim().replace(/\s+/g,' ')+'\n';});
+        } else { out+=n.textContent.trim().replace(/\s+/g,' ')+'\n'; }
+        out+='\n';
+      });
+      navigator.clipboard.writeText(out).then(()=>{
+        btn.classList.add('done');btn.textContent='â Copied';
+        setTimeout(()=>{btn.classList.remove('done');btn.textContent='â§ Copy script';},1600);
+      });
+    });
+  });
+</script>
